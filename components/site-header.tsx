@@ -75,9 +75,9 @@ export function SiteHeader() {
   const underline = (active: boolean) => cn("absolute inset-x-0 bottom-0 h-px origin-left brand-gradient transition-transform duration-300", active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 shadow-[0_10px_30px_color-mix(in_srgb,var(--background)_55%,transparent)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-white/85 shadow-[0_10px_30px_color-mix(in_srgb,var(--background)_55%,transparent)] backdrop-blur-xl">
       <div className="shell-grid flex h-20 items-center justify-between">
-        <Link href="/" className="text-xl font-semibold tracking-[-0.04em] text-foreground">Ved<span className="text-primary">Tech</span></Link>
+        <Link href="/" className="text-xl font-semibold tracking-[-0.04em] text-foreground">Veda<span className="text-primary">Tech</span></Link>
         <nav aria-label="Primary navigation" className="hidden items-center gap-7 md:flex">
           <div ref={servicesRef} className="services-dropdown relative" onPointerEnter={(event) => { if (event.pointerType === "mouse") setServicesOpen(true); }} onPointerLeave={(event) => { if (event.pointerType === "mouse") setServicesOpen(false); }} onFocusCapture={() => setServicesOpen(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setServicesOpen(false); }}>
             <button ref={servicesTriggerRef} type="button" aria-expanded={servicesOpen} aria-haspopup="menu" aria-controls="desktop-services-menu" onClick={() => setServicesOpen((value) => !value)} onKeyDown={(event) => { if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); setServicesOpen(true); requestAnimationFrame(() => focusMenuItem(event.key === "ArrowDown" ? 0 : services.length - 1)); } }} className="group relative flex items-center gap-1 py-3 text-sm text-muted transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none">Services<ChevronDown className={cn("h-3.5 transition-transform duration-300", servicesOpen && "rotate-180")} /><span className={underline(currentSection === "services" || servicesOpen)} /></button>
@@ -88,7 +88,7 @@ export function SiteHeader() {
           {navLinks.map((link) => <Link key={link.id} href={link.href} aria-current={currentSection === link.id ? "location" : undefined} onClick={() => setActiveSection(link.id)} className="group relative py-3 text-sm text-muted transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none">{link.label}<span className={underline(currentSection === link.id)} /></Link>)}
         </nav>
         <div className="flex items-center gap-3">
-          <Button asChild className="brand-gradient brand-glow group hidden text-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"><Link href="/#quote">Get a quote <span className="transition-transform group-hover:translate-x-1">↗</span></Link></Button>
+          <Button asChild className="brand-gradient brand-glow group hidden text-white transition-transform hover:-translate-y-0.5 sm:inline-flex"><Link href="/#quote">Get a quote <span className="transition-transform group-hover:translate-x-1">↗</span></Link></Button>
           <Button aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} variant="ghost" size="icon" className="text-foreground transition-transform duration-300 hover:bg-primary/20 hover:text-foreground md:hidden" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
         </div>
       </div>
@@ -97,7 +97,7 @@ export function SiteHeader() {
           <button type="button" aria-expanded={servicesOpen} onClick={() => setServicesOpen(!servicesOpen)} className={cn("flex items-center justify-between border-b border-border py-4 text-left text-sm", currentSection === "services" ? "text-primary" : "text-muted")}>Services<ChevronDown className={cn("h-4 transition-transform", servicesOpen && "rotate-180")} /></button>
           <div className={cn("grid overflow-hidden transition-[grid-template-rows,opacity] duration-200", servicesOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}><div className="min-h-0 pl-4">{services.map((service) => <Link key={service.title} href="/#services" onClick={closeMenus} className="block border-b border-border py-3 text-sm text-muted hover:text-primary focus-visible:text-primary">{service.title}</Link>)}</div></div>
           {navLinks.map((link) => <Link key={link.id} href={link.href} aria-current={currentSection === link.id ? "location" : undefined} onClick={() => { setActiveSection(link.id); closeMenus(); }} className={cn("border-b border-border py-4 text-sm transition-colors hover:text-primary focus-visible:text-primary", currentSection === link.id ? "text-primary" : "text-muted")}>{link.label}</Link>)}
-          <Button asChild className="mt-4 bg-primary text-foreground"><Link href="/#quote" onClick={closeMenus}>Get a quote</Link></Button>
+          <Button asChild className="mt-4 bg-primary text-white"><Link href="/#quote" onClick={closeMenus}>Get a quote</Link></Button>
         </nav>
       </div>
     </header>

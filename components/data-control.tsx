@@ -1,25 +1,47 @@
-import { AppWindow, BriefcaseBusiness, LockKeyhole, Server } from "lucide-react";
+import type { CSSProperties } from "react";
+import { AppWindow, Database, KeyRound, Server } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
 const nodes = [
-  { label: "Business", icon: BriefcaseBusiness },
-  { label: "Infrastructure", icon: Server },
-  { label: "Application", icon: AppWindow },
-  { label: "Database", icon: LockKeyhole },
+  { label: "Your App / Web", note: "Custom domain & logic", copy: "Bespoke applications built exclusively for your workflow.", icon: AppWindow, color: "#2563eb", rgb: "37 99 235" },
+  { label: "Your Data", note: "Zero telemetry", copy: "Every customer record and operational metric remains yours.", icon: Database, color: "#7c3aed", rgb: "124 58 237" },
+  { label: "Your Server", note: "Cloud or VPS", copy: "Infrastructure deployed on your preferred environment.", icon: Server, color: "#16a34a", rgb: "22 163 74" },
+  { label: "In Your Hands", note: "End-to-end ownership", copy: "Code, credentials, and intellectual property stay with you.", icon: KeyRound, color: "#e13032", rgb: "225 48 50" },
 ];
 
 export function DataControl() {
   return (
-    <section id="data-control" className="shell-grid border-b border-border py-20 sm:py-28">
-      <Reveal><div className="max-w-2xl"><p className="eyebrow">Data control</p><h2 className="section-title mt-4">Your data stays under your control.</h2><p className="mt-6 text-base leading-7 text-muted">Every layer is designed to stay visible, accountable, and yours, all the way to the locked database.</p></div></Reveal>
-      <Reveal className="mt-14" delay={90}>
-        <div className="border border-border bg-surface/50 p-5 sm:p-10">
-          <svg viewBox="0 0 900 180" role="img" aria-label="Business to infrastructure to application to locked database flow" className="hidden h-auto w-full md:block">
-            <defs><linearGradient id="flow" x1="0" x2="1"><stop stopColor="var(--primary)" /><stop offset=".75" stopColor="var(--secondary)" /><stop offset="1" stopColor="var(--accent)" /></linearGradient></defs>
-            {nodes.slice(0, -1).map((_, index) => <line className="data-flow-line" key={index} x1={134 + index * 233} x2={299 + index * 233} y1="90" y2="90" stroke="url(#flow)" strokeWidth="2" strokeOpacity=".8" />)}
-            {nodes.map(({ label, icon: Icon }, index) => <g key={label}><circle cx={100 + index * 233} cy="90" r="34" fill="var(--background)" stroke={index === 3 ? "var(--accent)" : "var(--secondary)"} strokeWidth="2" /><foreignObject x={80 + index * 233} y="70" width="40" height="40"><div className={`flex h-full items-center justify-center ${index === 3 ? "text-accent" : "text-secondary"}`}><Icon size={19} /></div></foreignObject><text x={100 + index * 233} y="145" textAnchor="middle" fill="var(--foreground)" fontSize="14">{label}</text></g>)}
-          </svg>
-          <div className="grid gap-3 md:hidden">{nodes.map(({ label, icon: Icon }, index) => <div key={label} className="flex items-center gap-3 text-sm text-muted"><span className={`flex h-8 w-8 items-center justify-center border ${index === 3 ? "border-accent text-accent" : "border-secondary/50 text-secondary"}`}><Icon className="h-4 w-4" /></span><span>{label}</span>{index < nodes.length - 1 && <span className="text-muted/60">→</span>}</div>)}</div>
+    <section id="data-control" className="shell-grid border-b border-border py-20 sm:py-24">
+      <Reveal>
+        <div className="section-intro max-w-3xl">
+          <p className="eyebrow">Complete sovereignty</p>
+          <h2 className="section-title mt-4">Your app. Your data. <span className="text-secondary">In your hands.</span></h2>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-muted">Absolute ownership across your technology stack, from the custom application to infrastructure and the locked database.</p>
+        </div>
+      </Reveal>
+      <Reveal className="mt-12" delay={90}>
+        <div className="aurora-border relative overflow-hidden rounded-xl border border-border bg-surface/55 p-5 sm:p-8 lg:p-10">
+          <div className="ownership-flow relative grid gap-4 lg:grid-cols-4">
+            {nodes.map(({ label, note, copy, icon: Icon, color, rgb }, index) => (
+              <article
+                key={label}
+                className="ownership-card aurora-border relative rounded-lg border border-border bg-background p-5 text-center"
+                style={{ "--flow-index": index, "--flow-color": color, "--flow-rgb": rgb } as CSSProperties}
+              >
+                <div className="ownership-icon mx-auto flex h-12 w-12 items-center justify-center rounded-lg border">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-base font-semibold text-foreground">{label}</h3>
+                <p className="ownership-note mt-2 text-[0.6rem] font-semibold uppercase tracking-[0.12em]">{note}</p>
+                <p className="mt-4 text-xs leading-5 text-muted">{copy}</p>
+                {index < nodes.length - 1 && <span className="ownership-connector" aria-hidden="true"><span /></span>}
+              </article>
+            ))}
+          </div>
+          <div className="mt-7 flex flex-col gap-3 border-t border-border pt-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+            <p className="flex items-center gap-2"><span className="h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" aria-hidden="true" />Client retains root access, master encryption keys, and source IP.</p>
+            <p className="text-foreground/80">Your app &rarr; Your data &rarr; Your server &rarr; Your hands</p>
+          </div>
         </div>
       </Reveal>
     </section>

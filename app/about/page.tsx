@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Clock3, Mail, MapPin, Phone, UserRound } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About VedTech | Custom Software Development",
-  description: "Meet VedTech, a custom software development company based in Jodhpur, Rajasthan, India.",
+  title: "About VedaTech | Custom Software Development",
+  description: "Meet VedaTech, a custom software development company based in Jodhpur, Rajasthan, India.",
 };
 
 const details = [
@@ -17,14 +17,14 @@ export default function AboutPage() {
     <main className="shell-grid py-16 sm:py-24 lg:py-28">
       <section aria-labelledby="about-heading" className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
         <div className="max-w-2xl">
-          <p className="eyebrow">About VedTech</p>
+          <p className="eyebrow">About VedaTech</p>
           <h1 id="about-heading" className="section-title mt-5">Software built around real business needs.</h1>
           <p className="mt-7 max-w-xl text-base leading-8 text-muted sm:text-lg">
-            VedTech is a custom software development company based in Jodhpur. We build practical digital systems that help businesses manage their work with more clarity and control.
+            VedaTech is a custom software development company based in Jodhpur. We build practical digital systems that help businesses manage their work with more clarity and control.
           </p>
         </div>
 
-        <div className="border border-border bg-surface/70 p-6 sm:p-8">
+        <div className="aurora-border border border-border bg-surface/70 p-6 sm:p-8">
           <h2 className="text-2xl font-semibold text-foreground">Company details</h2>
           <dl className="mt-6 divide-y divide-border border-y border-border">
             {details.map(({ icon: Icon, label, value }) => (

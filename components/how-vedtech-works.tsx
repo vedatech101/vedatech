@@ -1,42 +1,26 @@
-﻿"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-import { Check } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { SectionReveal } from "@/components/section-reveal";
 import { Reveal } from "@/components/reveal";
+import { SectionReveal } from "@/components/section-reveal";
 
-const steps = ["Requirement", "Discovery", "Analysis", "Scope", "Quotation", "Agreement", "Development", "Testing", "Deployment", "Support"];
+const steps = [
+  { title: "Requirement", phase: "Inception", copy: "Goals, constraints, and the real business need are documented." },
+  { title: "Discovery", phase: "Exploration", copy: "Users, workflows, systems, and dependencies are mapped." },
+  { title: "Analysis", phase: "Feasibility", copy: "Technical options, risks, and practical trade-offs are reviewed." },
+  { title: "Scope", phase: "Specification", copy: "Deliverables, boundaries, milestones, and ownership become clear." },
+  { title: "Quotation", phase: "Transparency", copy: "Cost and timeline are connected to an agreed delivery plan." },
+  { title: "Agreement", phase: "Commitment", copy: "Responsibilities, access, and acceptance criteria are confirmed." },
+  { title: "Development", phase: "Execution", copy: "The product is built in visible, reviewable increments." },
+  { title: "Testing", phase: "Verification", copy: "Quality, security, performance, and edge cases are checked." },
+  { title: "Deployment", phase: "Rollout", copy: "Release, migration, monitoring, and handover are coordinated." },
+  { title: "Support", phase: "Continuous evolution", copy: "The next decision remains visible, owned, and ready to move." },
+];
 
-export function HowVedTechWorks() {
-  const [active, setActive] = useState(0);
-  const reduced = useReducedMotion();
-  const listRef = useRef<HTMLOListElement>(null);
-
-  useEffect(() => {
-    const blocks = listRef.current?.querySelectorAll<HTMLElement>("[data-process-step]");
-    if (!blocks?.length) return;
-    const visible = new Map<number, number>();
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const index = Number((entry.target as HTMLElement).dataset.processStep);
-        if (entry.isIntersecting) visible.set(index, entry.intersectionRatio);
-        else visible.delete(index);
-      });
-      const next = [...visible.entries()].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0]?.[0];
-      if (next !== undefined) setActive(next);
-    }, { rootMargin: "-15% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75] });
-    blocks.forEach((block) => observer.observe(block));
-    return () => observer.disconnect();
-  }, []);
-
+export function HowVedaTechWorks() {
   return (
-    <section id="process" className="shell-grid border-b border-border py-16 sm:py-20">
-      <SectionReveal><p className="eyebrow">How VedTech works</p><h2 className="section-title mt-4">A clear path from idea to dependable software.</h2></SectionReveal>
-      <div className="mt-14 grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
-        <aside className="hidden self-start lg:sticky lg:top-24 lg:block"><p className="mb-6 text-sm text-muted">A process you can see moving.</p><ol className="relative space-y-3 border-l border-border pl-5">{steps.map((step, index) => <li key={step}><button type="button" onClick={() => listRef.current?.querySelector(`[data-process-step="${index}"]`)?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" })} className={`relative text-left text-sm transition-colors ${index === active ? "font-medium text-foreground" : "text-muted/80 hover:text-foreground"}`}><span className={`absolute -left-[1.37rem] top-1 h-2 w-2 rounded-full transition-colors ${index <= active ? "bg-accent" : "bg-primary/30"}`} />{step}</button></li>)}</ol></aside>
-        <div className="relative"><div className="absolute bottom-4 left-[7px] top-4 w-px bg-primary/20 lg:hidden" /><motion.div className="absolute left-[7px] top-4 w-px origin-top bg-gradient-to-b from-primary via-secondary to-accent lg:hidden" animate={{ height: `${(active / (steps.length - 1)) * 100}%` }} transition={reduced ? { duration: 0 } : undefined} /><ol ref={listRef} className="space-y-4 lg:space-y-8">{steps.map((step, index) => <Reveal as="li" key={step} data-process-step={index} delay={index * 70} className="relative flex gap-5 pl-8 lg:pl-0"><span className={`absolute left-0 top-1 flex h-4 w-4 items-center justify-center rounded-full border lg:hidden ${index <= active ? "border-accent bg-accent text-foreground" : "border-primary/40 bg-surface"}`}>{index <= active && <Check className="h-2.5 w-2.5" />}</span><span className="hidden w-10 shrink-0 pt-1 text-xs text-muted/60 lg:block">{String(index + 1).padStart(2, "0")}</span><div className={`border-b border-border pb-4 lg:flex-1 lg:pb-6 ${index === active ? "text-foreground" : "text-muted"}`}><h3 className="text-lg font-medium">{step}</h3><p className="mt-1 text-sm text-muted/80">{index === active ? "The next decision is visible, owned, and ready to move." : "A deliberate step in the delivery path."}</p></div></Reveal>)}</ol></div>
-      </div>
+    <section id="process" className="shell-grid border-b border-border py-20 sm:py-24">
+      <SectionReveal><div className="section-intro flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow">How VedaTech works</p><h2 className="section-title mt-4">A clear path from idea to dependable software.</h2><p className="mt-5 max-w-xl text-sm leading-6 text-muted">Ten deliberate stages keep every decision visible and every delivery accountable.</p></div><p className="w-fit shrink-0 rounded-full border border-secondary/25 bg-secondary/10 px-4 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.15em] text-secondary">10-stage verifiable cadence</p></div></SectionReveal>
+      <ol className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {steps.map((step, index) => <Reveal as="li" key={step.title} delay={index * 55} className="group relative flex min-h-52 flex-col rounded-lg border border-border bg-surface/55 p-5 transition-[border-color,background-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-secondary/60 hover:bg-secondary/10 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--secondary)_10%,transparent)] focus-within:border-secondary/60"><div className="flex items-center justify-between"><span className="text-sm font-semibold text-secondary">{String(index + 1).padStart(2, "0")}</span><span className="h-1.5 w-1.5 rounded-full bg-primary/45 transition-[background-color,box-shadow] group-hover:bg-secondary group-hover:shadow-[0_0_12px_var(--secondary)]" /></div><h3 className="mt-6 text-base font-semibold text-foreground">{step.title}</h3><p className="mt-2 text-xs leading-5 text-muted">{step.copy}</p><p className="mt-auto pt-5 text-[0.52rem] font-semibold uppercase tracking-[0.13em] text-muted/65 transition-colors group-hover:text-secondary">Phase: {step.phase}</p></Reveal>)}
+      </ol>
     </section>
   );
 }

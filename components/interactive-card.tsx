@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import * as React from "react";
-import { Code2, Database, Factory, HeartPulse, Layers3, LockKeyhole, ShieldCheck, Store, UtensilsCrossed, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Code2, Database, Factory, HeartPulse, Layers3, LockKeyhole, ShieldCheck, Store, UtensilsCrossed, type LucideIcon } from "lucide-react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { cardHover, iconHover } from "@/lib/motion";
 
@@ -23,9 +23,9 @@ export function InteractiveCard({ kind, icon, title, copy, meta }: Props) {
   function reset() { x.set(0); y.set(0); setActive(false); }
 
   return (
-    <motion.article data-kind={kind} className="group relative overflow-hidden border border-secondary/25 bg-surface p-6 shadow-[0_18px_50px_color-mix(in_srgb,var(--background)_55%,transparent)] transition-colors duration-300 hover:border-secondary/70 focus:border-secondary focus:outline-none sm:p-7" style={{ rotateX: reduced ? 0 : rotateX, rotateY: reduced ? 0 : rotateY, transformPerspective: 900 }} whileHover={reduced ? undefined : cardHover} onPointerMove={move} onPointerEnter={(event) => event.pointerType === "mouse" && setActive(true)} onPointerLeave={reset} onPointerDown={(event) => event.pointerType === "touch" && setActive(true)} onPointerUp={(event) => event.pointerType === "touch" && setActive(false)} tabIndex={0} aria-label={`${title}: ${copy}`}>
+    <motion.article data-kind={kind} className="aurora-border group relative min-h-56 overflow-hidden rounded-[0.65rem] border border-secondary/20 bg-surface/75 p-5 shadow-[0_18px_50px_color-mix(in_srgb,var(--background)_55%,transparent)] transition-colors duration-300 hover:border-secondary/60 focus:border-secondary focus:outline-none sm:p-6" style={{ rotateX: reduced ? 0 : rotateX, rotateY: reduced ? 0 : rotateY, transformPerspective: 900 }} whileHover={reduced ? undefined : cardHover} onPointerMove={move} onPointerEnter={(event) => event.pointerType === "mouse" && setActive(true)} onPointerLeave={reset} onPointerDown={(event) => event.pointerType === "touch" && setActive(true)} onPointerUp={(event) => event.pointerType === "touch" && setActive(false)} tabIndex={0} aria-label={`${title}: ${copy}`}>
       <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/15 transition-opacity duration-300 ${active ? "opacity-100" : "opacity-40"}`} />
-      <div className="relative"><motion.div animate={active && !reduced ? iconHover : undefined} className="flex h-10 w-10 items-center justify-center border border-secondary/40 bg-primary/20 text-foreground group-hover:border-accent/60"><Icon className="h-5 w-5" /></motion.div>{meta && <p className="mt-8 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-muted">{meta}</p>}<h3 className="mt-8 text-lg font-medium text-foreground">{title}</h3><p className="mt-3 text-sm leading-6 text-muted">{copy}</p></div>
+      <div className="relative flex min-h-44 flex-col"><motion.div animate={active && !reduced ? iconHover : undefined} className="flex h-10 w-10 items-center justify-center rounded-md border border-secondary/35 bg-primary/20 text-foreground group-hover:border-accent/60"><Icon className="h-5 w-5" /></motion.div><h3 className="mt-6 text-base font-semibold text-foreground">{title}</h3><p className="mt-2 text-sm leading-6 text-muted">{copy}</p><div className="mt-auto flex items-end justify-between pt-5">{meta && <p className="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-muted/80">{meta}</p>}<ArrowUpRight className="h-4 w-4 text-secondary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></div></div>
     </motion.article>
   );
 }

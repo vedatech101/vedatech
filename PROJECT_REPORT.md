@@ -1,10 +1,10 @@
-# VedTech Project Report
+# VedaTech Project Report
 
 Generated from the current repository state on 2026-10-02. This report intentionally contains no passwords, secret values, or local `.env` contents.
 
 ## 1. Overview
 
-VedTech is a dark-first, responsive custom software development company website built as a standard Next.js App Router application. The current implementation is a single-page experience with server-side quote handling and MySQL persistence.
+VedaTech is a dark-first, responsive custom software development company website built as a standard Next.js App Router application. The current implementation is a single-page experience with server-side quote handling and MySQL persistence.
 
 ### Current status
 
@@ -21,13 +21,13 @@ VedTech is a dark-first, responsive custom software development company website 
 Only the `/` page exists as a real content page. It contains:
 
 1. Responsive site header and navigation.
-2. Hero with VedTech positioning, CTAs, and interactive workflow SVG.
+2. Hero with VedaTech positioning, CTAs, and interactive workflow SVG.
 3. Services section with four cards.
 4. Industries section with three cards.
 5. Selected case studies section with two placeholder case studies.
 6. Feature/ownership section with three cards.
 7. Data Control animated flow section.
-8. "How VedTech Works" ten-step process section.
+8. "How VedaTech Works" ten-step process section.
 9. Multi-step quote/contact form.
 10. Site footer.
 
@@ -198,7 +198,7 @@ Shared consumers:
 
 `components/site-header.tsx` includes:
 
-- VedTech wordmark.
+- VedaTech wordmark.
 - Desktop navigation.
 - Keyboard-focusable Services dropdown.
 - `aria-expanded` and `aria-haspopup` state.
@@ -222,9 +222,9 @@ It provides pointer-driven 3D tilt, spring response, animated border/gradient, i
 
 `components/hero.tsx` contains:
 
-- Required VedTech label/headline/supporting text/data-control promise/CTAs.
+- Required VedaTech label/headline/supporting text/data-control promise/CTAs.
 - Inline SVG business-requirements-to-products workflow.
-- VedTech engineering core, Custom Application, ERP, CRM, Mobile App, Web Platform outputs.
+- VedaTech engineering core, Custom Application, ERP, CRM, Mobile App, Web Platform outputs.
 - Database, server, and cloud visual cues.
 - Desktop pointer parallax.
 - Scroll-linked opacity/vertical transition.
@@ -385,7 +385,7 @@ Migrations are not a daily startup command. The local environment currently uses
 ### Phase 1
 
 - Initialized Next/TypeScript/Tailwind project foundation.
-- Added VedTech tokens, responsive shell, header, mobile drawer, footer, grids, loading components, and motion utilities.
+- Added VedaTech tokens, responsive shell, header, mobile drawer, footer, grids, loading components, and motion utilities.
 
 ### Phase 2
 
@@ -464,7 +464,7 @@ Migrations are not a daily startup command. The local environment currently uses
 | Area | Status | Notes |
 | --- | --- | --- |
 | Responsive layout | Mostly complete | Responsive hero, grids, nav, cards, process, data flow, form, and footer exist. Automated browser QA remains outstanding. |
-| Dark premium VedTech visual direction | Complete foundation | Near-black slate, cyan/indigo accents, restrained rectangular surfaces. Requested fonts are missing. |
+| Dark premium VedaTech visual direction | Complete foundation | Near-black slate, cyan/indigo accents, restrained rectangular surfaces. Requested fonts are missing. |
 | Homepage content order | Partially complete | Core sections exist, but order differs from the original brief and full final CTA/footer detail is minimal. |
 | Multi-page site | Incomplete | Only `/` and framework `/_not-found` exist. |
 | Hover/card interaction | Complete foundation | Shared tilt, glow, border, icon, tap, focus, and reduced-motion behavior. Some card actions are placeholders. |

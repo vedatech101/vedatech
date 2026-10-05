@@ -1,6 +1,6 @@
-# VedTech
+# VedaTech
 
-VedTech is a standard Next.js App Router site using TypeScript, Tailwind CSS, Framer Motion, and npm. It can run on Vercel, Azure, or any Node-compatible VPS.
+VedaTech is a standard Next.js App Router site using TypeScript, Tailwind CSS, Framer Motion, and npm. It can run on Vercel, Azure, or any Node-compatible VPS.
 
 ## Setup
 
@@ -20,7 +20,7 @@ Set these server-only variables in `.env`:
 
 - `RESEND_API_KEY`: Resend API key.
 - `QUOTE_TO_EMAIL`: inbox for quote enquiries.
-- `QUOTE_FROM_EMAIL`: verified sender, for example `VedTech <forms@example.com>`.
+- `QUOTE_FROM_EMAIL`: verified sender, for example `VedaTech <forms@example.com>`.
 
 The form uses client and server Zod validation, a honeypot, an in-memory rate limit, and a server action. Missing configuration or Resend failures return an error and preserve entered values. `.env` files are ignored by Git.
 
